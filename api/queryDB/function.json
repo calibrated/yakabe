@@ -1,0 +1,29 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "get",
+        "post"
+      ],
+      "route":"yakabe/{partitionKeyValue}/{id}"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "name": "taskDocument",
+      "direction": "in",
+      "type": "cosmosDB",
+      "connectionStringSetting": "yakabe_DOCUMENTDB",
+      "databaseName": "ToDoList",
+      "collectionName": "Items",
+      "sqlQuery" : "Select * from c where c.id ={id}"
+    }
+  ]
+}
